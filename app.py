@@ -2,7 +2,7 @@ from flask import Flask, request, Response, stream_with_context, jsonify
 from redis import Redis
 import os, time, json
 app = Flask(__name__)
-db = Redis(host='localhost', port=6379)
+db = Redis(host='10.96.99.51', port=6379)
 
 @app.route('/')
 def hello():
