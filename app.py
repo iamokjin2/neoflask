@@ -1,13 +1,14 @@
 from flask import Flask, request, Response, stream_with_context, jsonify
 from redis import Redis
+import socket
 import os, time, json
 app = Flask(__name__)
 db = Redis(host='10.96.99.51', port=6379)
-
+myip = socket.gethostbyname(socket.gethostname())
 @app.route('/')
 def hello():
     db.incr('count')
-    return 'Count is %s.' % db.get('count')
+    return 'IP : ' + myip + '  Count is %s.' % db.get('count')
 
 
 @app.route('/<path:path>', methods = ['PUT', 'GET'])
